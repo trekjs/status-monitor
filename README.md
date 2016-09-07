@@ -40,7 +40,7 @@ spans: [{
 
 ## Badges
 
-[![Build Status](https://travis-ci.org/trekjs/status-monitor.svg?branch=master)](https://travis-ci.org/trekjs/sstatus-monitor)
+[![Build Status](https://travis-ci.org/trekjs/status-monitor.svg?branch=master)](https://travis-ci.org/trekjs/status-monitor)
 [![codecov](https://codecov.io/gh/trekjs/status-monitor/branch/master/graph/badge.svg)](https://codecov.io/gh/trekjs/status-monitor)
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
