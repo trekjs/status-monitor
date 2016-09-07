@@ -15,24 +15,24 @@ describe('trek-status-monitor', () => {
     });
 
     const req = { socket: {} };
-    const res = { send: sinon.stub(), raw: {} };
+    const res = { end: sinon.stub() };
     const next = sinon.stub();
 
     describe('when invoked', () => {
       beforeEach(() => {
         req.path = defaultConfig.path;
-        res.send.reset();
+        res.end.reset();
       });
 
-      it(`and req.path === ${defaultConfig.path}, then res.send called`, () => {
-        middleware({ req, res }, next);
-        sinon.assert.called(res.send);
+      it(`and req.path === ${defaultConfig.path}, then res.end called`, () => {
+        middleware({ req, rawRes: res }, next);
+        sinon.assert.called(res.end);
       });
 
-      it(`and req.path !== ${defaultConfig.path}, then res.send not called`, () => {
+      it(`and req.path !== ${defaultConfig.path}, then res.end not called`, () => {
         req.path = '/another-path';
-        middleware({ req, res }, next);
-        sinon.assert.notCalled(res.send);
+        middleware({ req, rawRes: res }, next);
+        sinon.assert.notCalled(res.end);
       });
     });
   });
