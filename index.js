@@ -15,14 +15,14 @@ const middlewareWrapper = (config) => {
       .replace(/{{script}}/g, fs.readFileSync(path.join(__dirname, '/app.js')))
       .replace(/{{style}}/g, fs.readFileSync(path.join(__dirname, '/style.css')));
 
-  return ({ req, res }, next) => {
+  return ({ req, rawRes }, next) => {
     socketIoInit(req.socket.server, config.spans);
 
     const startTime = process.hrtime();
     if (req.path === config.path) {
-      res.send(200, renderedHtml);
+      rawRes.end(renderedHtml)
     } else {
-      onHeaders(res.raw, () => { onHeadersListener(res.status, startTime, config.spans) });
+      onHeaders(rawRes, () => { onHeadersListener(rawRes.statusCode, startTime, config.spans) });
       return next();
     }
   };
