@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Express Status',
+  title: 'Trek Status',
   path: '/status',
   spans: [
     {
