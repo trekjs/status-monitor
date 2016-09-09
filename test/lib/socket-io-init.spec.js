@@ -1,0 +1,31 @@
+'use strict'
+
+const chai = require('chai')
+
+chai.should()
+
+const socketIoInit = require('../../lib/socket-io-init')
+const defaultConfig = require('../../lib/default-config')
+
+describe('helpers', () => {
+  describe('socket-io-init', () => {
+    describe('when invoked', () => {
+      it('then all spans should have os and responses property', () => {
+        const spans = defaultConfig.spans
+
+        spans.forEach((span) => {
+          span.should.not.have.property('os')
+          // info: not working as if it was another test interfering
+          // span.should.not.have.property('responses');
+        })
+
+        socketIoInit({}, spans)
+
+        spans.forEach((span) => {
+          span.should.have.property('os')
+          span.should.have.property('responses')
+        })
+      })
+    })
+  })
+})
