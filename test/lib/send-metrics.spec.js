@@ -7,7 +7,7 @@ chai.should()
 
 const sendMetrics = require('../../lib/send-metrics')
 
-describe('helpers', () => {
+describe('lib', () => {
   describe('send-metrics', () => {
     describe('when invoked', () => {
       it('then io.emit called', () => {

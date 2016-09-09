@@ -7,7 +7,7 @@ chai.should()
 const defaultConfig = require('../../lib/default-config')
 const validate = require('../../lib/validate')
 
-describe('helpers', () => {
+describe('lib', () => {
   describe('validate', () => {
     describe('when config is null or undefined', () => {
       const config = validate()

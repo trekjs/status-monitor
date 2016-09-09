@@ -8,7 +8,7 @@ chai.should()
 const onHeadersListener = require('../../lib/on-headers-listener')
 const defaultConfig = require('../../lib/default-config')
 
-describe('helpers', () => {
+describe('lib', () => {
   describe('on-headers-listener', () => {
     describe('when invoked', () => {
       const clock = sinon.useFakeTimers()

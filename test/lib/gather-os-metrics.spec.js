@@ -6,7 +6,7 @@ chai.should()
 
 const gatherOsMetrics = require('../../lib/gather-os-metrics')
 
-describe('helpers', () => {
+describe('lib', () => {
   describe('gather-os-metrics', () => {
     describe('when invoked', () => {
       it('then ...', () => {
