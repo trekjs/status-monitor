@@ -5,38 +5,90 @@ Forked from [express-status-monitor](https://github.com/RafalWilinski/express-st
 
 ![Monitoring Page](http://i.imgur.com/AHizEWq.gif "Monitoring Page")
 
-## Installation & setup
-1. Run `npm install trek-status-monitor --save`
-2. Before any other middleware or router add following line:
-`app.use(require('trek-status-monitor')());`
-3. Run server and go to `/status`
 
-## Run examples
-
-2. Run `npm i`
-3. Run server `node examples/index.js`
-4. Go to `http://0.0.0.0:3000`
-
-## Options
-
-Monitor can be configured by passing options object into `trekMonitor` constructor.
-
-Default config:
-```javascript
-title: 'Trek Status',     // Default title
-path: '/status',
-spans: [{
-  interval: 1,            // Every second
-  retention: 60           // Keep 60 datapoints in memory
-}, {
-  interval: 5,            // Every 5 seconds
-  retention: 60
-}, {
-  interval: 15,           // Every 15 seconds
-  retention: 60
-}]
+## Installation
 
 ```
+$ npm install trek-status-monitor --save
+```
+
+
+## Example
+
+```js
+const Engine = require('trek-engine')
+
+// setups & configs status monitor.
+const statusMonitor = require('trek-status-monitor')({
+  title: 'Trek Status',
+  path: '/status'
+})
+
+const app = new Engine()
+
+// registers status monitor's middleware
+app.use(statusMonitor.middleware)
+
+app.use(({ req, res, rawRes }) => {
+  // registers status monitor's page route, defaults to `/status`
+  if (req.path === statusMonitor.path) {
+    return statusMonitor.page({ rawRes })
+  }
+  res.end('Hello world')
+})
+
+app.run(3000, () => {
+  console.log('listening on http://0.0.0.0:3000')
+})
+```
+
+```
+$ npm i
+$ node examples/index.js
+$ open http://0.0.0.0:3000/status
+```
+
+
+### APIs
+
+* **config**: *Object*
+
+  Monitor can be configured by passing options object into `statusMonitor` constructor.
+
+  Default config:
+  ```js
+  {
+    title: 'Trek Status',     // Default title
+    path: '/status',
+    spans: [{
+      interval: 1,            // Every second
+      retention: 60           // Keep 60 datapoints in memory
+    }, {
+      interval: 5,            // Every 5 seconds
+      retention: 60
+    }, {
+      interval: 15,           // Every 15 seconds
+      retention: 60
+    }]
+  }
+  ```
+
+* **path**: *String*
+
+  Alias to `config.path`, defaults to `/status`.
+
+* **middleware**: *Function*
+
+  The Trek's middleware.
+
+  `app.use(statusMonitor.middleware)`
+
+* **page**: *Function*
+
+  The Trek's middleware, but using for the special route.
+
+  `router.get(statusMonitor.path, statusMonitor.page)`
+
 
 ## Badges
 

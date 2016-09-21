@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>{{title}}</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
   <style>
     {{style}}
@@ -58,6 +58,18 @@
     </div>
     <div class="chart-container">
       <canvas id="rpsChart" width="200" height="100"></canvas>
+    </div>
+  </div>
+  <div class="container">
+    <div class="stats-column">
+      <h5>Status Codes</h5>
+      <h6 class="status-code status-code-2xx">2xx</h6>
+      <h6 class="status-code status-code-3xx">3xx</h6>
+      <h6 class="status-code status-code-4xx">4xx</h6>
+      <h6 class="status-code status-code-5xx">5xx</h6>
+    </div>
+    <div class="chart-container">
+      <canvas id="statusCodesChart" width="200" height="100"></canvas>
     </div>
   </div>
   <div class="footer">

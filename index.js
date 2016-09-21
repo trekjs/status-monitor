@@ -7,28 +7,36 @@ const validate = require('./lib/validate')
 const onHeadersListener = require('./lib/on-headers-listener')
 const socketIoInit = require('./lib/socket-io-init')
 
-const staticPath = join(__dirname, 'static')
+module.exports = main
 
-const middlewareWrapper = (config) => {
-  config = validate(config);
+function main (config) {
+  config = validate(config)
 
+  const staticPath = join(__dirname, 'static')
   const renderedHtml =
     readFileSync(join(staticPath, 'index.html'), { encoding: 'utf8' })
       .replace(/{{title}}/g, config.title)
       .replace(/{{script}}/g, readFileSync(join(staticPath, 'app.js')))
       .replace(/{{style}}/g, readFileSync(join(staticPath, 'style.css')))
 
-  return ({ req, rawRes }, next) => {
-    socketIoInit(req.socket.server, config.spans)
+  return {
+    config,
 
-    const startTime = process.hrtime()
-    if (req.path === config.path) {
-      rawRes.end(renderedHtml)
-    } else {
-      onHeaders(rawRes, () => { onHeadersListener(rawRes.statusCode, startTime, config.spans) })
+    get path () {
+      return config.path
+    },
+
+    middleware ({ rawReq, rawRes }, next) {
+      const startTime = process.hrtime()
+      socketIoInit(rawReq.socket.server, config.spans)
+      onHeaders(rawRes, () => {
+        onHeadersListener(rawRes.statusCode, startTime, config.spans)
+      })
       return next()
+    },
+
+    page ({ rawRes }) {
+      rawRes.end(renderedHtml)
     }
   }
 }
-
-module.exports = middlewareWrapper
