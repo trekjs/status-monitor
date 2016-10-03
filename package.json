@@ -1,6 +1,6 @@
 {
   "name": "trek-status-monitor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Realtime Monitoring for Trek-based Node applications",
   "main": "index.js",
   "keywords": [
