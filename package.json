@@ -1,6 +1,6 @@
 {
   "name": "trek-status-monitor",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Realtime Monitoring for Trek-based Node applications",
   "main": "index.js",
   "keywords": [
@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "on-headers": "1.0.1",
-    "pidusage": "1.1.0",
+    "pidusage": "1.1.1",
     "socket.io": "1.7.2",
     "uws": "0.12.0"
   },
