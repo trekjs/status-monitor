@@ -2,7 +2,13 @@
   "name": "trek-status-monitor",
   "version": "0.3.1",
   "description": "Realtime Monitoring for Trek-based Node applications",
-  "main": "index.js",
+  "repository": "trekjs/status-monitor",
+  "license": "MIT",
+  "author": {
+    "name": "Fangdun Cai",
+    "email": "cfddream@gmail.com",
+    "url": "fundon.me"
+  },
   "keywords": [
     "node",
     "status",
@@ -11,17 +17,15 @@
     "charts",
     "middleware"
   ],
+  "main": "index.js",
   "engines": {
     "node": ">=6"
   },
-  "author": "Fangdun Cai <cfddream@gmail.com> (https://fundon.me)",
-  "repository": "trekjs/status-monitor",
-  "license": "MIT",
   "dependencies": {
     "on-headers": "1.0.1",
     "pidusage": "1.1.1",
-    "socket.io": "1.7.2",
-    "uws": "0.12.0"
+    "socket.io": "1.7.3",
+    "uws": "0.13.0"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha -- --report lcovonly -u exports test/lib test",
