@@ -1,6 +1,6 @@
 {
   "name": "trek-status-monitor",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Realtime Monitoring for Trek-based Node applications",
   "repository": "trekjs/status-monitor",
   "license": "MIT",
@@ -19,13 +19,13 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=6"
+    "node": ">=7.7"
   },
   "dependencies": {
     "on-headers": "1.0.1",
-    "pidusage": "1.1.1",
-    "socket.io": "1.7.3",
-    "uws": "0.13.0"
+    "pidusage": "1.1.4",
+    "socket.io": "2.0.1",
+    "uws": "0.14.5"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha -- --report lcovonly -u exports test/lib test",
@@ -35,7 +35,7 @@
     "chai": "3",
     "istanbul": "0",
     "mocha": "3",
-    "sinon": "1",
-    "trek-engine": "0"
+    "sinon": "2",
+    "trek-engine": "1"
   }
 }
